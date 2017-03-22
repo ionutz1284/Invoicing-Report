@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSets>
+    <DataSet Name="RptProjectManagementActuals">
+      <SharedDataSet>
+        <SharedDataSetReference>RptProjectManagementActuals</SharedDataSetReference>
+        <QueryParameters>
+          <QueryParameter Name="@lStaff_id">
+            <Value>=Parameters!lStaff_id.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@lAmountType_id">
+            <Value>=Parameters!lAmountType_id.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@lSorting_id">
+            <Value>=Parameters!lSorting_id.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@lAssignment_id">
+            <Value>=Parameters!lAssignment_id.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@bPosted">
+            <Value>=Parameters!bPosted.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@bBillable">
+            <Value>=Parameters!bBillable.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@bActive">
+            <Value>=Parameters!bActive.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@dtStart_Date">
+            <Value>=Parameters!dtStart_Date.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@dtEnd_Date">
+            <Value>=Parameters!dtEnd_Date.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="lStaff_Id">
+          <DataField>lStaff_Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="szFullName">
+          <DataField>szFullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dtItemDate">
+          <DataField>dtItemDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="lAssignment_id">
+          <DataField>lAssignment_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="szAssignmentNumber">
+          <DataField>szAssignmentNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="szAssignmentDescription">
+          <DataField>szAssignmentDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="bBillable">
+          <DataField>bBillable</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="time_expenses">
+          <DataField>time_expenses</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="travel_expenses">
+          <DataField>travel_expenses</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="other_expenses">
+          <DataField>other_expenses</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="szSubcategory">
+          <DataField>szSubcategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="szWorkPackageDescription">
+          <DataField>szWorkPackageDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="bytCategory">
+          <DataField>bytCategory</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="szCategoryDescription">
+          <DataField>szCategoryDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="decQuantity">
+          <DataField>decQuantity</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="szSubCategoryGroupName">
+          <DataField>szSubCategoryGroupName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="szDescription">
+          <DataField>szDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="szFirstName">
+          <DataField>szFirstName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="szLastName">
+          <DataField>szLastName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>3.35059in</Height>
+        <Style />
+      </Body>
+      <Width>7.69947in</Width>
+      <Page>
+        <PageHeader>
+          <Height>1.07814in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Image Name="schucoLogo">
+              <Source>Embedded</Source>
+              <Value>schucoLogo</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.14584in</Top>
+              <Left>0.77374in</Left>
+              <Height>0.71875in</Height>
+              <Width>0.69413in</Width>
+              <Visibility>
+                <Hidden>=parameters!useLogo.Value = false</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Invoice Detail " &amp;IIF(parameters!lSorting_id.Value = 1, "(By Staff)", iif(parameters!lSorting_id.Value = 2, "(By Staff, By Work Package)", iif(parameters!lSorting_id.Value = 3, "(By Work Package)", iif(parameters!lSorting_id.Value = 4, "(By Work Package, By Staff)", nothing))))</Value>
+                      <Style>
+                        <FontFamily>tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox7</rd:DefaultName>
+              <Top>0.5in</Top>
+              <Left>1.58128in</Left>
+              <Height>0.13542in</Height>
+              <Width>5.15117in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox8">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="From " &amp;Parameters!dtStart_Date.Value &amp;" to "&amp;Parameters!dtEnd_Date.Value</Value>
+                      <Style>
+                        <FontFamily>tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox8</rd:DefaultName>
+              <Top>0.77084in</Top>
+              <Left>1.58128in</Left>
+              <Height>0.15625in</Height>
+              <Width>5.15117in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value EvaluationMode="Constant">fix this</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.14584in</Top>
+              <Left>1.58128in</Left>
+              <Height>0.17708in</Height>
+              <Width>5.15117in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.45138in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Line Name="Line1">
+              <Top>0.06944in</Top>
+              <Height>0in</Height>
+              <Width>7.69947in</Width>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
+            <Textbox Name="Textbox26">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>tahoma</FontFamily>
+                        <FontSize>6pt</FontSize>
+                        <Format>D</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox26</rd:DefaultName>
+              <Top>0.13888in</Top>
+              <Height>0.3125in</Height>
+              <Width>1.46787in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox29">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page: "&amp;Globals!OverallPageNumber &amp;" of "&amp;Globals!OverallTotalPages</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>tahoma</FontFamily>
+                        <FontSize>6pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Format>D</Format>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox26</rd:DefaultName>
+              <Top>0.13888in</Top>
+              <Left>5.97853in</Left>
+              <Height>0.3125in</Height>
+              <Width>1.72094in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox30">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Invoice Detail</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>tahoma</FontFamily>
+                        <FontSize>6pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox27</rd:DefaultName>
+              <Top>0.13888in</Top>
+              <Left>1.53732in</Left>
+              <Height>0.3125in</Height>
+              <Width>4.37177in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="lStaff_id">
+      <DataType>Integer</DataType>
+      <Prompt>l Staff id</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="lAmountType_id">
+      <DataType>Integer</DataType>
+      <Prompt>l Amount Type id</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="lSorting_id">
+      <DataType>Integer</DataType>
+      <Prompt>l Sorting id</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="lAssignment_id">
+      <DataType>Integer</DataType>
+      <Prompt>l Assignment id</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="bPosted">
+      <DataType>Integer</DataType>
+      <Prompt>b Posted</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="bBillable">
+      <DataType>Integer</DataType>
+      <Prompt>b Billable</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="bActive">
+      <DataType>Integer</DataType>
+      <Prompt>b Active</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="dtStart_Date">
+      <DataType>DateTime</DataType>
+      <Prompt>dt Start Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="dtEnd_Date">
+      <DataType>DateTime</DataType>
+      <Prompt>dt End Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="useLogo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>useLogo</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="schucoLogo">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>40fdde7e-53d6-497b-bf5e-d5cdbbf2a130</rd:ReportID>
+</Report>
